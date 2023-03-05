@@ -28,5 +28,8 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     borderRadius: 10,
     overflow: "hidden",
+  },
+  tasksList: {
+    marginHorizontal: 24,
   }
 })

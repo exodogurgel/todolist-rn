@@ -53,19 +53,19 @@ Before you begin, you will need to have the following tools installed on your ma
 
 ```bash
 
-# Clonar o repositório
+# Clone this repository
 $ git clone https://github.com/exodogurgel/todolist-rn.git
 
-# Entrar no diretório
+# Access the project folder in your terminal
 $ cd todolist-rn
 
-# Instalar as dependências
+# Install the dependencies
 $ npm install
 
-# Iniciar o projeto
+# Run the application in development mode
 $ expo start
 
-# Utilize o ExpoGo para executar o App
+# Use ExpoGo to run the App
 
 ```
 

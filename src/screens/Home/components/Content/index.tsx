@@ -19,6 +19,15 @@ export function Content() {
     setTasks(state => [...state, task])
   }
 
+  function toggleCheckedTask(id: string) {
+    const checkedTask = tasks.map(task => task.id === id ? {
+      ...task,
+      isCompleted: !task.isCompleted
+    }: task)
+
+    setTasks(checkedTask)
+  }
+
   return (
     <>
       <FormInput onAddNewTask={addNewTask}/>
@@ -45,7 +54,10 @@ export function Content() {
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           return (
-            <Task id={item.id} isCompleted={item.isCompleted} task={item.task}/>
+            <Task 
+              task={item}
+              onToggleCheckedTask={toggleCheckedTask}
+            />
           )
         }}
         showsVerticalScrollIndicator={false}

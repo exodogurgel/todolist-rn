@@ -4,13 +4,18 @@ import {MaterialCommunityIcons, Feather} from "@expo/vector-icons";
 import { styles } from "./styles";
 import { useState } from "react";
 
-interface TaskProps {
+type Task = {
   id: string
   task: string
   isCompleted: boolean
 }
 
-export function Task(task: TaskProps) {
+interface TaskProps {
+  task: Task
+  onToggleCheckedTask: (id: string) => void
+}
+
+export function Task({task, onToggleCheckedTask}: TaskProps) {
   const [inCheckHighlight, setInCheckHighlight] = useState(false);
   const [inDanger, setInDanger] = useState(false);
   
@@ -21,6 +26,7 @@ export function Task(task: TaskProps) {
         underlayColor='transparent'
         onShowUnderlay={() => setInCheckHighlight(true)}
         onHideUnderlay={() => setInCheckHighlight(false)}
+        onPress={() => onToggleCheckedTask(task.id)}
       >
         {task.isCompleted ? (
           <MaterialCommunityIcons 

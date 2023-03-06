@@ -46,6 +46,12 @@ export function Content() {
     
   }
 
+  const tasksCreatedCounter = tasks.length
+
+  const completedTasks = tasks.reduce((acc, task) => {
+    return task.isCompleted ? acc + 1 : acc
+  }, 0)
+
   return (
     <>
       <FormInput onAddNewTask={addNewTask}/>
@@ -54,14 +60,22 @@ export function Content() {
           <Text style={[styles.textInfo, {color: '#4EA8DE'}]}>
             Criadas
           </Text>
-          <Text style={styles.counterInfo}>0</Text>
+          <Text style={styles.counterInfo}>
+            {tasksCreatedCounter}
+          </Text>
         </View>
 
         <View style={styles.tasksInfo}>
           <Text style={[styles.textInfo, {color: '#8284FA'}]}>
             Concluídas
           </Text>
-          <Text style={styles.counterInfo}>0</Text>
+          <Text style={styles.counterInfo}>
+            {tasksCreatedCounter === 0 ? (
+              0
+            ): (
+              `${completedTasks} de ${tasksCreatedCounter}`
+            )}
+          </Text>
         </View>
       </View>
 

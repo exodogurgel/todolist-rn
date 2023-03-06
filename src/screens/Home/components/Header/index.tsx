@@ -1,7 +1,7 @@
 import { Image, View } from "react-native"
 
 import { styles } from "./styles"
-import logoImg from '../../assets/logo.png'
+import logoImg from '../../../../assets/logo.png'
 
 export function Header() {
   return (

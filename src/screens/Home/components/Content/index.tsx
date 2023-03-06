@@ -1,32 +1,27 @@
+import { useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import { EmptyTasks } from "../EmptyTasks";
-import { FormInput } from "../FormInput";
-import { Task } from "../Task";
+import { EmptyTasks } from "../../../../components/EmptyTasks";
+import { FormInput } from "../../../../components/FormInput";
+import { Task } from "../../../../components/Task";
 
 import { styles } from "./styles";
 
-const TASKS = [
-  {
-    id: '1',
-    task: "Integer urna interdum massa libero auctor neque turpis turpis semper.",
-    isCompleted: true,
-  },
-  {
-    id: '2',
-    task: "Integer urna interdum massa libero auctor neque turpis turpis semper.",
-    isCompleted: false,
-  },
-  {
-    id: '3',
-    task: "Integer urna interdum massa libero auctor neque turpis turpis semper.",
-    isCompleted: true,
-  }
-]
+interface Task {
+  id: string
+  task: string
+  isCompleted: boolean
+}
 
 export function Content() {
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  function addNewTask(task: Task) {
+    setTasks(state => [...state, task])
+  }
+
   return (
     <>
-      <FormInput />
+      <FormInput onAddNewTask={addNewTask}/>
       <View style={styles.container}>
         <View style={styles.tasksInfo}>
           <Text style={[styles.textInfo, {color: '#4EA8DE'}]}>
@@ -46,7 +41,7 @@ export function Content() {
       <FlatList 
         style={styles.tasksList}
         
-        data={TASKS}
+        data={tasks}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           return (

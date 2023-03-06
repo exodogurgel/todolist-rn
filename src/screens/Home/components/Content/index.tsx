@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Alert } from "react-native";
 import { FlatList, Text, View } from "react-native";
 import { EmptyTasks } from "../../../../components/EmptyTasks";
 import { FormInput } from "../../../../components/FormInput";
@@ -26,6 +27,23 @@ export function Content() {
     }: task)
 
     setTasks(checkedTask)
+  }
+
+  function removeTasks(id: string) {
+    const tasksFiltered = tasks.filter(task => task.id !== id)
+
+    Alert.alert('Remover tarefa', 'Deseja remover essa tarefa?', [
+      {
+        text: 'Sim',
+        onPress: () => setTasks(tasksFiltered)
+      },
+      {
+        text: 'Não',
+        style: 'cancel'
+      }
+    ])
+
+    
   }
 
   return (
@@ -57,6 +75,7 @@ export function Content() {
             <Task 
               task={item}
               onToggleCheckedTask={toggleCheckedTask}
+              onRemoveTasks={removeTasks}
             />
           )
         }}

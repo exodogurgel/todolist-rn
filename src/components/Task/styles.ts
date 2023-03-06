@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     lineHeight: 20
   },
   trashButton: {
-    paddingLeft: 8,
-    borderRadius: 4,
+    padding: 8,
+    borderRadius: 8,
   }
 })

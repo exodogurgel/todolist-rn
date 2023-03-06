@@ -13,9 +13,10 @@ type Task = {
 interface TaskProps {
   task: Task
   onToggleCheckedTask: (id: string) => void
+  onRemoveTasks: (id: string) => void
 }
 
-export function Task({task, onToggleCheckedTask}: TaskProps) {
+export function Task({task, onToggleCheckedTask, onRemoveTasks}: TaskProps) {
   const [inCheckHighlight, setInCheckHighlight] = useState(false);
   const [inDanger, setInDanger] = useState(false);
   
@@ -60,6 +61,7 @@ export function Task({task, onToggleCheckedTask}: TaskProps) {
         style={styles.trashButton}
         onShowUnderlay={() => setInDanger(true)}
         onHideUnderlay={() => setInDanger(false)}
+        onPress={() => onRemoveTasks(task.id)}
       >
       <Feather 
           name='trash-2' 
